@@ -1,0 +1,6 @@
+{
+    "name": "Binarium",
+    "symbol": "BINARIUM",
+    "algorithm": "Binarium_hash_v1",
+    "mposDiffMultiplier": 256
+}
