@@ -88,6 +88,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 }
                 try {
                     var d = result.data.split('result":')[1].split(',')[0].split('.')[1];
+                    logger.debug(logSystem, logComponent, 'paymentProcessor.js : SetupForPool () : getbalance : ' + d + ' .' );
                     magnitude = parseInt('10' + new Array(d.length).join('0'));
                     minPaymentSatoshis = parseInt(processingConfig.minimumPayment * magnitude);
                     coinPrecision = magnitude.toString().length - 1;
