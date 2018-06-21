@@ -25,6 +25,8 @@ module.exports = function(logger){
             callback(setupResults);
         });
     }, function(coins){
+        var logSystem = 'Payments';
+        logger.debug(logSystem, "Coin", 'paymentProcessor.js : function(coins) : ' + coins + ' .' );
         coins.forEach(function(coin){
 
             var poolOptions = poolConfigs[coin];
@@ -87,15 +89,22 @@ function SetupForPool(logger, poolOptions, setupFinished){
                     return;
                 }
                 try {
+                    //var aCoins = new Array ();
                     var d = result.data.split('result":')[1].split(',')[0].split('.')[1];
                     logger.debug(logSystem, logComponent, 'paymentProcessor.js : SetupForPool () : getbalance : ' + d + ' .' );
                     magnitude = parseInt('10' + new Array(d.length).join('0'));
+                    logger.debug(logSystem, logComponent, 'paymentProcessor.js : SetupForPool () : magnitude : ' + magnitude + ' .' );
                     minPaymentSatoshis = parseInt(processingConfig.minimumPayment * magnitude);
+                    logger.debug(logSystem, logComponent, 'paymentProcessor.js : SetupForPool () : minPaymentSatoshis : ' + minPaymentSatoshis + ' .' );
                     coinPrecision = magnitude.toString().length - 1;
+                    logger.debug(logSystem, logComponent, 'paymentProcessor.js : SetupForPool () : coinPrecision : ' + coinPrecision + ' .' );
+                    //aCoins [ 0 ] = coin;
                     callback();
+                    //callback ( aCoins );
                 }
                 catch(e){
-                    logger.error(logSystem, logComponent, 'Error detecting number of satoshis in a coin, cannot do payment processing. Tried parsing: ' + result.data);
+                    logger.error(logSystem, logComponent, 'Error detecting number of satoshis in a coin, cannot do payment processing. Tried parsing: ' + result.data +
+                        " ; " + e.name + + ":" + e.message + "\n" + e.stack );
                     callback(true);
                 }
 
