@@ -180,6 +180,9 @@ module.exports = function(logger){
 
             var shareData = JSON.stringify(data);
 
+            console.log ( "pool.on : share () : isValidShare : " + isValidShare + " , isValidBlock : " + isValidBlock + " ." );
+            console.dir ( data );
+
             if (data.blockHash && !isValidBlock)
                 logger.debug(logSystem, logComponent, logSubCat, 'We thought a block was found but it was rejected by the daemon, share data: ' + shareData);
 
