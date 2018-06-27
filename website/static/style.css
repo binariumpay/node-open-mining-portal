@@ -66,3 +66,15 @@ footer a{
 footer iframe{
     vertical-align: middle;
 }
+
+.pure-menu .pure-menu-heading.BinariumHomeLink {
+    text-transform : none;
+}
+
+.BinariumHomeLink_Logo {
+    background: url("/static/binarium_logo_64.png") no-repeat fixed center;
+}
+
+.BinariumHomeLink img {
+    height : 48px;
+}
