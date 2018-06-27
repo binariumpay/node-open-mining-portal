@@ -230,8 +230,11 @@
         <a href="#" class="miningOption" id="nompAppDownload">
             <div class="miningOptionNum">1.</div>
             <div class="miningOptionInstructions">
-                <div>Download NOMP App</div>
-                <div>Our preconfigured app makes mining that easy</div>
+                <!--div>Download NOMP App</div>
+                <div>Our preconfigured app makes mining that easy</div-->
+                <div>Download Binarium CPUMiner-Easy :</div>
+                <div>https://github.com/binariumpay/cpuminer-easy/releases .</div>
+                <div>Soon we will integrate pool-miner into wallet for easy mining.</div>
             </div>
         </a>
         <div id="orHolder">
@@ -312,7 +315,8 @@
 
     $('#nompAppDownload').click(function(event){
         event.preventDefault();
-        alert('NOMP App development still in progress...');
+        //alert('NOMP App development still in progress...'); 
+        window.open ( 'https://github.com/binariumpay/cpuminer-easy/releases', '_blank' );
         return false;
     });
 </script>

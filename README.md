@@ -126,6 +126,7 @@ Usage
 * Coin daemon(s) (find the coin's repo and build latest version from source)
 * [Node.js](http://nodejs.org/) v0.10+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * [Redis](http://redis.io/) key-value store v2.6+ ([follow these instructions](http://redis.io/topics/quickstart))
+* Tested programs versions : Node.JS v6.11.4, NPM 3.5.2 and Redis 3.0.6 .
 
 ##### Seriously
 Those are legitimate requirements. If you use old versions of Node.js or Redis that may come with your system package manager then you will have problems. Follow the linked instructions to get the last stable versions.
