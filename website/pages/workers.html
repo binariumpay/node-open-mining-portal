@@ -54,8 +54,8 @@
                    {{var workerstat = it.stats.pools[pool].workers[worker];}}
                     <tr class="pure-table-odd">
                         <td>{{=worker}}</td>
-                        <td>{{=Math.floor(workerstat.shares)}}</td>
-                        <td>{{=Math.floor(workerstat.invalidshares)}}</td>
+                        <td>{{=Math.floor(10000 * workerstat.shares)}}</td>
+                        <td>{{=Math.floor(10000 * workerstat.invalidshares)}}</td>
                         <td>{{? workerstat.shares > 0}} {{=Math.floor(10000 * workerstat.shares / (workerstat.shares + workerstat.invalidshares)) / 100}}% {{??}} 0% {{?}}</td>
                         <td>{{=workerstat.hashrateString}}</td>
                     </tr>
