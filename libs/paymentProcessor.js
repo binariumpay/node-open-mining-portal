@@ -165,6 +165,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 startRedisTimer();
                 redisClient.multi([
                     ['hgetall', coin + ':balances'],
+					['hgetall', coin + ':minpayments'],
                     ['smembers', coin + ':blocksPending']
                 ]).exec(function(error, results){
                     endRedisTimer();
@@ -181,8 +182,12 @@ function SetupForPool(logger, poolOptions, setupFinished){
                     for (var w in results[0]){
                         workers[w] = {balance: coinsToSatoshies(parseFloat(results[0][w]))};
                     }
+					
+					if (results[1][w]){
+						workers[w].minpayment = coinsToSatoshies(parseFloat(results[1][w]));
+					}
 
-                    var rounds = results[1].map(function(r){
+                    var rounds = results[2].map(function(r){
                         var details = r.split(':');
                         return {
                             blockHash: details[0],
@@ -373,8 +378,9 @@ function SetupForPool(logger, poolOptions, setupFinished){
                         var worker = workers[w];
                         worker.balance = worker.balance || 0;
                         worker.reward = worker.reward || 0;
+						worker.minpayment = worker.minpayment || 0;
                         var toSend = (worker.balance + worker.reward) * (1 - withholdPercent);
-                        if (toSend >= minPaymentSatoshis) {
+                        if ((worker.minpayment && toSend >= worker.minpayment) || (!worker.minpayment && toSend >= minPaymentSatoshis)) {
                             totalSent += toSend;
                             var address = worker.address = (worker.address || getProperAddress(w));
                             worker.sent = addressAmounts[address] = satoshisToCoins(toSend);
